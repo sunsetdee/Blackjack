@@ -1,0 +1,77 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #23512F;
+}
+
+header {
+    text-align: center;
+    font-size: 10vmin;  
+    margin: 3vmin 0vmin; 
+    border: 0.5vmin dotted #C8B632 ;
+    
+}
+
+#dealer {
+    text-align: right;
+    margin: 5vmin 10vmin 3vmin 0vmin;
+    font-size: 5vmin;   
+}
+
+#dlr.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    border: 5px solid #C8B632 ;
+    justify-content: flex-end; 
+    font-size: 3vmin;
+    color: red
+}
+
+.score {
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+}
+
+#player {
+    text-align: left;
+    margin: 5vmin 0vmin 3vmin 10vmin;   
+    font-size: 5vmin;
+}
+
+#plr.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    border: 5px solid #C8B632 ;
+    justify-content: flex;  
+    font-size: 3vmin;
+    color: red
+}
+
+#chips {
+    color: red;
+}
+
+button {
+    border-radius: 50%;
+    padding: 15px 25px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #C8B632;
+    color: red; 
+    justify-content: flex-end;
+    
+    
+}
+
+#panel {
+    text-align: center;
+    border-top: 1px solid #070707;
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    padding-top: 10px;
+}
