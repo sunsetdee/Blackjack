@@ -2,23 +2,44 @@
 const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 const players = {
-    dealer:
-    player: 
+    dealer: null,
+    player: null, 
 };
 // Build a 'master' deck of 'card' objects used to create shuffled decks
 const masterDeck = buildMasterDeck();
-renderDeckInContainer(masterDeck, document.getElementById('master-deck-container'));
 
 /*----- app's state (variables) -----*/
-let shuffledDeck;
-
+let deck;
+let playerHand, dealerHand; 
+let gameStatus; // null, 'P', 'D', 'T', 'PBJ', 'DBJ'
+let chips; 
+let playerWins
+let dealerWins
 /*----- cached element references -----*/
-const shuffledContainer = document.getElementById('shuffled-deck-container');
-
+const hitEl = document.getElementById('hit');
+const standEl = document.getElementById('stand');
+const doubleEl = document.getElementById('double');
+const replayEl = document.getElementById('replay'); 
 /*----- event listeners -----*/
-document.querySelector('button').addEventListener('click', renderNewShuffledDeck);
 
 /*----- functions -----*/
+function handleDeal() {
+  gameStatus = null;
+  deck = getNewShuffledDeck();
+  playerHand = [deck.pop(), deck.pop()];
+  dealerHand = [deck.pop(), deck.pop()];
+  playerScore = computeHand(playerHand);
+  dealerScore = computeHand(dealerHand);
+  chips = 100; 
+  //todos 
+};
+
+
+// return best value of hand 
+function computeHand(hand) { 
+
+}
+
 function getNewShuffledDeck() {
   // Create a copy of the masterDeck (leave masterDeck untouched!)
   const tempDeck = [...masterDeck];
@@ -32,12 +53,7 @@ function getNewShuffledDeck() {
   return newShuffledDeck;
 }
 
-function renderNewShuffledDeck() {
-  // Create a copy of the masterDeck (leave masterDeck untouched!)
-  shuffledDeck = getNewShuffledDeck();
-  renderDeckInContainer(shuffledDeck, shuffledContainer);
-}
-
+// don't use the code from 31 to 43
 function renderDeckInContainer(deck, container) {
   container.innerHTML = '';
   // Let's build the cards as a string of HTML
@@ -68,4 +84,3 @@ function buildMasterDeck() {
   return deck;
 }
 
-renderNewShuffledDeck();
