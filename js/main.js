@@ -12,15 +12,26 @@ const masterDeck = buildMasterDeck();
 let deck;
 let playerHand, dealerHand; 
 let gameStatus; // null, 'P', 'D', 'T', 'PBJ', 'DBJ'
-let chips; 
-let playerWins
-let dealerWins
+let playerWins;
+let dealerWins;
 /*----- cached element references -----*/
 const hitEl = document.getElementById('hit');
 const standEl = document.getElementById('stand');
 const doubleEl = document.getElementById('double');
 const replayEl = document.getElementById('replay'); 
+const dealerScore = document.getElementById('dealer-score');
+const playerScore = document.getElementById('player-score ');
+const dlrHand = document.getElementById('dlr');
+const plrHand = document.getElementById('plr');
+const masterDk = document.getElementById('master-deck');
+const chipsCount = document.getElementById('chips');
+const message = document.getElementById('msg');
 /*----- event listeners -----*/
+document.getElementById('bet').addEventListener('click', handleBet);
+document.getElementById('hit').addEventListener('click', handleHit);
+document.getElementById('stand').addEventListener('click', handleHit);
+document.getElementById('double').addEventListener('click', handleDouble);
+document.getElementById('replay').addEventListener('click', handleDeal);
 
 /*----- functions -----*/
 function handleDeal() {
@@ -30,13 +41,20 @@ function handleDeal() {
   dealerHand = [deck.pop(), deck.pop()];
   playerScore = computeHand(playerHand);
   dealerScore = computeHand(dealerHand);
+
   chips = 100; 
+
   //todos 
 };
 handleDeal();
 
 // return best value of hand 
 function computeHand(hand) { 
+  let val = 0;
+  if (ranks === 'A' && )
+  
+
+
 
 }
 
