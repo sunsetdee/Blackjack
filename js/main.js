@@ -42,20 +42,40 @@ function handleDeal() {
   playerScore = computeHand(playerHand);
   dealerScore = computeHand(dealerHand);
 
-  chips = 100; 
+  
 
   //todos 
 };
 handleDeal();
 
+function handelChips() {
+  chipsCount = 100;
+  // if player click the bet button, minus 5 from chipsCount
+}
+
 // return best value of hand 
 function computeHand(hand) { 
-  let val = 0;
-  if (ranks === 'A' && )
-  
+  let playerValue = 0;
+  if (ranks === 'A' && hand <= 11) {
+    playerValue = 11;
+  } else if (rank === 'A') {
+    playerValue = 1;
+  } else if (rank === 'J' || rank === 'Q' || rank === 'K') {
+    playerValue = 10;
+  } else if (playerHand === 21) {
+    gameStatus = PBJ;
+  } else (gameStatus = null);
 
-
-
+  let dealerValue = 0;
+  if (rank === 'A' && hand <= 11) {
+    dealerValue = 11;
+  } else if (rank === 'A') {
+    dealerValue = 1;
+  } else if (rank === 'J' || rank === 'Q' || rank === 'K') {
+    dealerValue = 10; 
+  } else if (delaerHand === 21) {
+    gameStatus = DBJ;
+  } else (gameStatus = null); 
 }
 
 function getNewShuffledDeck() {
