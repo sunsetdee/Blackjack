@@ -15,6 +15,7 @@ let gameStatus; // null, 'P', 'D', 'T', 'PBJ', 'DBJ'
 let playerWins;
 let dealerWins;
 /*----- cached element references -----*/
+const betEl = document.getElementById('bet');
 const hitEl = document.getElementById('hit');
 const standEl = document.getElementById('stand');
 const doubleEl = document.getElementById('double');
@@ -49,7 +50,9 @@ function handleDeal() {
 handleDeal();
 
 function handelChips() {
-  chipsCount = 100;
+  chipsCount = 100; 
+  if (betEl.click) chipsCount - 5; 
+
   // if player click the bet button, minus 5 from chipsCount
 }
 
@@ -77,6 +80,15 @@ function computeHand(hand) {
     gameStatus = DBJ;
   } else (gameStatus = null); 
 }
+
+function rendenButton() {
+  while (hitEl.click) {
+    playerHand = [deck.pop()];
+  } if (playerValue > 21) {
+    gameStatus = D 
+  } else if 
+}
+
 
 function getNewShuffledDeck() {
   // Create a copy of the masterDeck (leave masterDeck untouched!)
