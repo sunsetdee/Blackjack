@@ -33,7 +33,7 @@ function handleDeal() {
   chips = 100; 
   //todos 
 };
-
+handleDeal();
 
 // return best value of hand 
 function computeHand(hand) { 
