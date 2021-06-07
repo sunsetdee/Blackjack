@@ -75,3 +75,42 @@ button {
     width: 100%;
     padding-top: 10px;
 }
+
+#one {
+    background-color: #8C9193;
+    border:1px solid #8C9193;    
+    height:100px;
+    border-radius:50%;
+    width:100px;
+    color: black;
+}
+
+#five {
+    background-color: #780822;
+    border:1px solid #780822;    
+    height:100px;
+    border-radius:50%;
+    width:100px;
+    color: black;
+}
+
+#twentyfive {
+    background-color:#0C332D;
+    border:1px solid #0C332D;    
+    height:100px;
+    border-radius:50%;
+    width:100px;
+    color: black; 
+}
+
+#hundred {
+    background-color: #10120E;
+    border:1px solid  #10120E;    
+    height:100px;
+    border-radius:50%;
+    width:100px;
+    color: black;  
+
+    .class1 {
+        display: grid;
+    }

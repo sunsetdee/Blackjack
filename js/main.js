@@ -54,8 +54,14 @@ function render() {
   renderControls();
 }
 
-function renderCards() {
+function renderCards(deck, container) {
+  container.innerHTML = '';
+  let cardHtml = '';
+  buildMasterDeck.forEach(function(card) {
+    cardsHtml += `<div id='deck ${card.face}"></div>`;
 
+  });
+  
 }
 
 function renderMoney() {
