@@ -11,83 +11,134 @@ const masterDeck = buildMasterDeck();
 /*----- app's state (variables) -----*/
 let deck;
 let playerHand, dealerHand; 
-let gameStatus; // null, 'P', 'D', 'T', 'PBJ', 'DBJ'
-let playerWins;
-let dealerWins;
+let handStatus; // null, 'P', 'D', 'T', 'PBJ', 'DBJ'
+let bankroll; 
+let bet; 
+
 /*----- cached element references -----*/
 const betEl = document.getElementById('bet');
 const hitEl = document.getElementById('hit');
 const standEl = document.getElementById('stand');
 const doubleEl = document.getElementById('double');
-const replayEl = document.getElementById('replay'); 
 const dealerScore = document.getElementById('dealer-score');
 const playerScore = document.getElementById('player-score ');
 const dlrHand = document.getElementById('dlr');
 const plrHand = document.getElementById('plr');
-const masterDk = document.getElementById('master-deck');
-const chipsCount = document.getElementById('chips');
-const message = document.getElementById('msg');
+const totalBetEl = document.getElementById('betamt');
+const bankrollEl = document.getElementById('bankroll');
+const messageEl = document.getElementById('msg');
+const deckEl = document.getElementById('deck');
+
 /*----- event listeners -----*/
-document.getElementById('bet').addEventListener('click', handleBet);
+document.getElementById('bet').addEventListener('click', handleUpdateBet);
 document.getElementById('hit').addEventListener('click', handleHit);
 document.getElementById('stand').addEventListener('click', handleHit);
-document.getElementById('double').addEventListener('click', handleDouble);
-document.getElementById('replay').addEventListener('click', handleDeal);
+document.getElementById('double').addEventListener('click', handleDoubleDown);
+document.getElementById('deal').addEventListener('click', handleDeal);
 
 /*----- functions -----*/
-function handleDeal() {
-  gameStatus = null;
-  deck = getNewShuffledDeck();
-  playerHand = [deck.pop(), deck.pop()];
-  dealerHand = [deck.pop(), deck.pop()];
-  playerScore = computeHand(playerHand);
-  dealerScore = computeHand(dealerHand);
+init(); 
 
-  
-
-  //todos 
-};
-handleDeal();
-
-function handelChips() {
-  chipsCount = 100; 
-  if (betEl.click) chipsCount - 5; 
-
-  // if player click the bet button, minus 5 from chipsCount
+function init() {
+  playerHand = [];
+  dealerHand = []; 
+  handStatus = null;
+  bankroll = 500;
+  bet = 0;
+  render(); 
 }
+
+function render() {
+  renderCards();
+  renderMoney(); 
+  renderControls();
+}
+
+function renderCards() {
+
+}
+
+function renderMoney() {
+  totalBetEl.textContent = bet; 
+  bankrollEl.textContent = bankroll; 
+}
+
+function renderControls() {
+
+}
+  
 
 // return best value of hand 
 function computeHand(hand) { 
-  let playerValue = 0;
-  if (ranks === 'A' && hand <= 11) {
-    playerValue = 11;
-  } else if (rank === 'A') {
-    playerValue = 1;
-  } else if (rank === 'J' || rank === 'Q' || rank === 'K') {
-    playerValue = 10;
-  } else if (playerHand === 21) {
-    gameStatus = PBJ;
-  } else (gameStatus = null);
-
-  let dealerValue = 0;
-  if (rank === 'A' && hand <= 11) {
-    dealerValue = 11;
-  } else if (rank === 'A') {
-    dealerValue = 1;
-  } else if (rank === 'J' || rank === 'Q' || rank === 'K') {
-    dealerValue = 10; 
-  } else if (delaerHand === 21) {
-    gameStatus = DBJ;
-  } else (gameStatus = null); 
+  let sum = 0;
+  let aceCount = 0; 
+  hand.forEach(function(card) {
+    if (card.face.includes('A')) aceCount++; 
+    sum += card.value; 
+  });
+  while (sum > 21 && aceCount) {
+    sum -= 10; 
+    aceCount--; 
+  }
+  return sum; 
 }
 
-function rendenButton() {
-  while (hitEl.click) {
-    playerHand = [deck.pop()];
-  } if (playerValue > 21) {
-    gameStatus = D 
-  } else if 
+function handleDeal() {
+  // TODO: initialize playerHand and dealerHand with two card objects from the shuffled deck
+  handStatus = null;  // or whatever state variable is being used to track the status of the hand
+  deck = getNewShuffledDeck();
+  playerHand = [deck.pop(), deck.pop()];
+  dealerHand = [deck.pop(), deck.pop()];
+  let pTotal = computeHand(playerHand);
+  let dTotal = computeHand(dealerHand);
+  // Check if blackjack exists 
+  if (pTotal === 21 && dTotal === 21) {
+    handStatus = "T";  // hand is a tie
+  } else if (pTotal === 21) {
+    handStatus = "PBJ";  // Player wins with blackjack
+  } else if (dTotal === 21) {
+    handStatus = "DBJ";  // Dealer wins with blackjack
+  } 
+  // TODO: If handStats is not null, update bankroll (use a dedicated function for this)
+  render();
 }
+
+function handleUpdateBet(evt) {
+  totalBet = 0; 
+  if (betEl.click) {
+    ChipsCount - 5 && totalBet + 5;
+  }
+  if (gameStatus = null) {
+    betEl.style.visibility = hidden; 
+  }
+}
+
+function handleHit(evt) {
+
+}
+ 
+
+function handleDoubleDown(evt) {
+  
+  
+}
+
+function handleStand(evt) {
+
+}
+
+
+
+function dealerTurn() {
+  
+}
+
+
+
+
+
+
+
 
 
 function getNewShuffledDeck() {
