@@ -22,15 +22,19 @@ const standEl = document.getElementById('stand');
 const doubleEl = document.getElementById('double');
 const dealerScore = document.getElementById('dealer-score');
 const playerScore = document.getElementById('player-score ');
-const dlrHand = document.getElementById('dlr');
-const plrHand = document.getElementById('plr');
+const dlrHandEl = document.getElementById('dhand');
+const plrHandEl = document.getElementById('phand');
 const totalBetEl = document.getElementById('betamt');
 const bankrollEl = document.getElementById('bankroll');
 const messageEl = document.getElementById('msg');
 const deckEl = document.getElementById('deck');
 
+
 /*----- event listeners -----*/
-document.getElementById('bet').addEventListener('click', handleUpdateBet);
+// document.getElementById('one').addEventListener('click', handleOne);
+// document.getElementById('five').addEventListener('click', handleFive);
+// document.getElementById('twentyfive').addEventListener('click', handleTwentyFive);
+// document.getElementById('hundred').addEventListener('click', handleHundre);
 document.getElementById('hit').addEventListener('click', handleHit);
 document.getElementById('stand').addEventListener('click', handleHit);
 document.getElementById('double').addEventListener('click', handleDoubleDown);
@@ -45,7 +49,7 @@ function init() {
   handStatus = null;
   bankroll = 500;
   bet = 0;
-  render(); 
+  handleDeal(); 
 }
 
 function render() {
@@ -54,14 +58,19 @@ function render() {
   renderControls();
 }
 
-function renderCards(deck, container) {
-  container.innerHTML = '';
-  let cardHtml = '';
-  buildMasterDeck.forEach(function(card) {
-    cardsHtml += `<div id='deck ${card.face}"></div>`;
-
+function renderCards() {
+  let cardsHtmlP = '';
+  playerHand.forEach(function(card) {
+    cardsHtmlP += `<div class="card ${card.face}"></div>`;
   });
-  
+  plrHandEl.innerHTML = cardsHtmlP;
+
+  let cardsHtmlD = '';
+  dealerHand.forEach(function(card, idx) {
+    cardsHtmlD += `<div class="card ${idx === 0 ? card.face: 'back'}"></div>`;
+  });
+  dlrHandEl.innerHTML = cardsHtmlD; 
+
 }
 
 function renderMoney() {
