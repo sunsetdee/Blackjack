@@ -9,24 +9,24 @@ body {
 header {
     text-align: center;
     font-size: 5vmin;  
-    margin: 3vmin 0vmin; 
+    margin: 0.5vmin 0vmin; 
     border: 0.5vmin dotted #C8B632 ;
     
 }
 
 #dealer {
-    text-align: right;
-    margin: 1vmin 10vmin 3vmin 0vmin;
-    font-size: 2.5vmin;   
+    text-align: center;
+    margin: 0.5vmin 10vmin 0.5vmin 0vmin;
+    font-size: 5vmin;   
 }
 
 #dlr.card-container {
     display: flex;
     flex-wrap: wrap;
-    border: 5px solid #C8B632 ;
-    justify-content: flex-end; 
+    /* border: 5px solid #C8B632 ; */
+    justify-content: center; 
     font-size: 3vmin;
-    color: red; 
+    color: #C8B632; 
     height: 19vmin;
 }
 
@@ -34,21 +34,22 @@ header {
     position: relative;
     text-align: center;
     font-size: 20px;
+    color: #C8B632;
 }
 
 #player {
-    text-align: left;
+    text-align: center;
     margin: 1vmin 0vmin 3vmin 10vmin;   
-    font-size: 2.5vmin;
+    font-size: 5vmin;
 }
 
 #plr.card-container {
     display: flex;
     flex-wrap: wrap;
-    border: 5px solid #C8B632 ;
-    justify-content: flex;  
+    /* border: 5px solid #C8B632 ; */
+    justify-content: center;  
     font-size: 3vmin;
-    color: red;
+    color: #C8B632;
     height: 19vmin;
 }
 
@@ -80,7 +81,7 @@ button {
     text-align: center;
     border-top: 1px solid #070707;
     position: absolute;
-    bottom: 30px;
+    bottom: 5px;
     width: 100%;
     padding-top: 10px;
 }
@@ -120,4 +121,14 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#totalbet, #betamt {
+    color: #C8B632;
+    font-size: 25px;
+}
+
+#bank, #bankroll {
+    color: #C8B632;
+    font-size: 25px;
 }
