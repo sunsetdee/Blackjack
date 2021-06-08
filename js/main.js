@@ -13,7 +13,7 @@ let deck;
 let playerHand, dealerHand; 
 let pTotal, dTotal; 
 let handStatus; // null, 'P', 'D', 'T', 'PBJ', 'DBJ'
-let bankroll; 
+let bankroll;     
 let bet; 
 
 /*----- cached element references -----*/
@@ -31,6 +31,7 @@ const messageEl = document.getElementById('msg');
 const deckEl = document.getElementById('deck');
 const betControlsEl = document.getElementById('bet-controls');
 const gameControlsEl = document.getElementById('game-controls');
+const audio = document.getElementById('dealaudio');
 
 
 
@@ -142,6 +143,8 @@ function handleDeal() {
   } 
   // TODO: If handStats is not null, update bankroll (use a dedicated function for this)
   render();
+   
+  audio.play();
 }
 
 function handleUpdateBet(evt) {
@@ -225,20 +228,20 @@ function getNewShuffledDeck() {
   return newShuffledDeck;
 }
 
-// don't use the code from 31 to 43
-function renderDeckInContainer(deck, container) {
-  container.innerHTML = '';
-  // Let's build the cards as a string of HTML
-  let cardsHtml = '';
-  deck.forEach(function(card) {
-    cardsHtml += `<div class="card ${card.face}"></div>`;
-  });
-  // Or, use reduce to 'reduce' the array into a single thing - in this case a string of HTML markup 
-  // const cardsHtml = deck.reduce(function(html, card) {
-  //   return html + `<div class="card ${card.face}"></div>`;
-  // }, '');
-  container.innerHTML = cardsHtml;
-}
+
+// function renderDeckInContainer(deck, container) {
+//   container.innerHTML = '';
+//   // Let's build the cards as a string of HTML
+//   let cardsHtml = '';
+//   deck.forEach(function(card) {
+//     cardsHtml += `<div class="card ${card.face}"></div>`;
+//   });
+//   // Or, use reduce to 'reduce' the array into a single thing - in this case a string of HTML markup 
+//   // const cardsHtml = deck.reduce(function(html, card) {
+//   //   return html + `<div class="card ${card.face}"></div>`;
+//   // }, '');
+//   container.innerHTML = cardsHtml;
+// }
 
 function buildMasterDeck() {
   const deck = [];
