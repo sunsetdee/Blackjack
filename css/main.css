@@ -98,23 +98,39 @@ button {
 }
 
 #one {
-    background-color: #8C9193;
-    border:1px solid #8C9193;    
+    /* background-color: #8C9193; */
+    border:1px solid #8C9193; 
+    background-image: url("https://i.imgur.com/al1dGcf.jpg");   
+    background-position: center;
+    background-size: cover;
+    font-size: 0px;  
 }
 
 #five {
     background-color: #780822;
     border:1px solid #780822;    
+    background-image: url("https://i.imgur.com/0O7oE7y.jpg"); 
+    background-position: center;
+    background-size: cover;
+    font-size: 0px;  
 }
 
 #twentyfive {
     background-color:#0C332D;
-    border:1px solid #0C332D;    
+    border:1px solid #0C332D; 
+    background-image: url("https://i.imgur.com/Fz7m3qG.jpg");
+    background-position: center;
+    background-size: cover;
+    font-size: 0px;  
 }
 
 #hundred {
     background-color: #10120E;
     border:1px solid  #10120E;    
+    background-image: url("https://i.imgur.com/dizb6iS.jpg");
+    background-position: center;
+    background-size: cover;
+    font-size: 0px;  
 }
 
 #bet-controls, #game-controls {
@@ -132,3 +148,4 @@ button {
     color: #C8B632;
     font-size: 25px;
 }
+
