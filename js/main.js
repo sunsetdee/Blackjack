@@ -11,34 +11,35 @@ const masterDeck = buildMasterDeck();
 /*----- app's state (variables) -----*/
 let deck;
 let playerHand, dealerHand; 
+let pTotal, dTotal; 
 let handStatus; // null, 'P', 'D', 'T', 'PBJ', 'DBJ'
 let bankroll; 
 let bet; 
 
 /*----- cached element references -----*/
-const betEl = document.getElementById('bet');
+const dealEl = document.getElementById('deal');
 const hitEl = document.getElementById('hit');
 const standEl = document.getElementById('stand');
 const doubleEl = document.getElementById('double');
-const dealerScore = document.getElementById('dealer-score');
-const playerScore = document.getElementById('player-score ');
+const dTotalEl = document.querySelector('#dealer-score > span');
+const pTotalEl = document.querySelector('#player-score > span');
 const dlrHandEl = document.getElementById('dhand');
 const plrHandEl = document.getElementById('phand');
 const totalBetEl = document.getElementById('betamt');
 const bankrollEl = document.getElementById('bankroll');
 const messageEl = document.getElementById('msg');
 const deckEl = document.getElementById('deck');
+const betControlsEl = document.getElementById('bet-controls');
+const gameControlsEl = document.getElementById('game-controls');
+
 
 
 /*----- event listeners -----*/
-// document.getElementById('one').addEventListener('click', handleOne);
-// document.getElementById('five').addEventListener('click', handleFive);
-// document.getElementById('twentyfive').addEventListener('click', handleTwentyFive);
-// document.getElementById('hundred').addEventListener('click', handleHundre);
+betControlsEl.addEventListener('click', handleUpdateBet);
 document.getElementById('hit').addEventListener('click', handleHit);
-document.getElementById('stand').addEventListener('click', handleHit);
+document.getElementById('stand').addEventListener('click', handleStand);
 document.getElementById('double').addEventListener('click', handleDoubleDown);
-document.getElementById('deal').addEventListener('click', handleDeal);
+dealEl.addEventListener('click', handleDeal);
 
 /*----- functions -----*/
 init(); 
@@ -49,13 +50,14 @@ function init() {
   handStatus = null;
   bankroll = 500;
   bet = 0;
-  handleDeal(); 
+  render();
 }
 
 function render() {
   renderCards();
   renderMoney(); 
   renderControls();
+  renderMessage();
 }
 
 function renderCards() {
@@ -64,13 +66,13 @@ function renderCards() {
     cardsHtmlP += `<div class="card ${card.face}"></div>`;
   });
   plrHandEl.innerHTML = cardsHtmlP;
-
+  pTotalEl.textContent = pTotal; 
   let cardsHtmlD = '';
   dealerHand.forEach(function(card, idx) {
-    cardsHtmlD += `<div class="card ${idx === 0 ? card.face: 'back'}"></div>`;
+    cardsHtmlD += `<div class="card ${idx === 0 && !handStatus ? 'back' : card.face}"></div>`;
   });
   dlrHandEl.innerHTML = cardsHtmlD; 
-
+  dTotalEl.textContent = handStatus ? dTotal : '?'; 
 }
 
 function renderMoney() {
@@ -79,9 +81,28 @@ function renderMoney() {
 }
 
 function renderControls() {
-
+  let showBetControls = !playerHand.length || handStatus;
+  gameControlsEl.style.display = !showBetControls ? 'flex' : 'none'; 
+  betControlsEl.style.display = showBetControls ? 'flex' : 'none'; 
+  doubleEl.disabled = playerHand.length !== 2 || bankroll < bet;
+  dealEl.disabled = bet < 1; 
 }
-  
+
+function renderMessage() {
+  if (handStatus === 'T') {
+    messageEl.textContent = 'You Push';
+  } else if (handStatus === 'P') {
+    messageEl.textContent = 'You Win!';
+  } else if (handStatus === 'D') {
+    messageEl.textContent = 'You Lose'; 
+  } else if (handStatus === 'PBJ') {
+    messageEl.textContent = 'You Have Blackjack!!';
+  } else if (handStatus === 'DBJ') {
+    messageEl.textContent = "Dealer Has Blackjack";
+  } else {
+    messageEl.textContent = 'Good Luck'; 
+  }
+}
 
 // return best value of hand 
 function computeHand(hand) { 
@@ -104,48 +125,83 @@ function handleDeal() {
   deck = getNewShuffledDeck();
   playerHand = [deck.pop(), deck.pop()];
   dealerHand = [deck.pop(), deck.pop()];
-  let pTotal = computeHand(playerHand);
-  let dTotal = computeHand(dealerHand);
+  pTotal = computeHand(playerHand);
+  dTotal = computeHand(dealerHand);
   // Check if blackjack exists 
   if (pTotal === 21 && dTotal === 21) {
     handStatus = "T";  // hand is a tie
+    bankroll += bet; 
+    bet = 0; 
   } else if (pTotal === 21) {
     handStatus = "PBJ";  // Player wins with blackjack
+    bankroll += bet + bet * 1.5; 
+    bet = 0; 
   } else if (dTotal === 21) {
     handStatus = "DBJ";  // Dealer wins with blackjack
+    bet = 0; 
   } 
   // TODO: If handStats is not null, update bankroll (use a dedicated function for this)
   render();
 }
 
 function handleUpdateBet(evt) {
-  totalBet = 0; 
-  if (betEl.click) {
-    ChipsCount - 5 && totalBet + 5;
+  let amt = evt.target.textContent;
+  if (amt === 'Deal') return; 
+  amt = parseInt(amt.replace('$', '')); 
+  if (amt > bankroll) return; 
+  if (evt.shiftKey && bet >= amt) {
+    amt *= -1;
+  } else if (evt.shiftKey && bet < amt) {
+    return; 
   }
-  if (gameStatus = null) {
-    betEl.style.visibility = hidden; 
-  }
+  bet += amt; 
+  bankroll -= amt; 
+  render();
 }
 
-function handleHit(evt) {
 
+function handleHit(evt) {
+  playerHand.push(deck.pop());
+  pTotal = computeHand(playerHand);
+  if (pTotal > 21) {
+    handStatus = 'D'; 
+    bet = 0;
+  }
+  render(); 
 }
  
 
-function handleDoubleDown(evt) {
-  
-  
+function handleDoubleDown() {
+  bankroll -= bet; 
+  bet *= 2;
+  handleHit(); 
+  if (pTotal <= 21) handleStand(); 
 }
 
-function handleStand(evt) {
-
+function handleStand() {
+  dealerTurn(); 
+  if (dTotal > 21 || pTotal > dTotal) {
+    handStatus = 'P';
+    bankroll += bet * 2;
+    bet = 0; 
+  } else if (pTotal === dTotal) {
+    handStatus = 'T';
+    bankroll += bet;
+    bet = 0;
+  } else {
+    handStatus = 'D';
+    bet = 0;
+  } 
+  render(); 
 }
 
 
 
 function dealerTurn() {
-  
+  while (dTotal < 17) {
+    dealerHand.push(deck.pop());
+    dTotal = computeHand(dealerHand);
+  }
 }
 
 

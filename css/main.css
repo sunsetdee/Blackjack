@@ -8,7 +8,7 @@ body {
 
 header {
     text-align: center;
-    font-size: 10vmin;  
+    font-size: 5vmin;  
     margin: 3vmin 0vmin; 
     border: 0.5vmin dotted #C8B632 ;
     
@@ -16,8 +16,8 @@ header {
 
 #dealer {
     text-align: right;
-    margin: 5vmin 10vmin 3vmin 0vmin;
-    font-size: 5vmin;   
+    margin: 1vmin 10vmin 3vmin 0vmin;
+    font-size: 2.5vmin;   
 }
 
 #dlr.card-container {
@@ -26,7 +26,8 @@ header {
     border: 5px solid #C8B632 ;
     justify-content: flex-end; 
     font-size: 3vmin;
-    color: red
+    color: red; 
+    height: 19vmin;
 }
 
 .score {
@@ -37,8 +38,8 @@ header {
 
 #player {
     text-align: left;
-    margin: 5vmin 0vmin 3vmin 10vmin;   
-    font-size: 5vmin;
+    margin: 1vmin 0vmin 3vmin 10vmin;   
+    font-size: 2.5vmin;
 }
 
 #plr.card-container {
@@ -47,24 +48,32 @@ header {
     border: 5px solid #C8B632 ;
     justify-content: flex;  
     font-size: 3vmin;
-    color: red
-}
-
-#chips {
     color: red;
+    height: 19vmin;
 }
 
 button {
-    border-radius: 50%;
-    padding: 15px 25px;
-    font-size: 20px;
     cursor: pointer;
+}
+
+.button {
+    border-radius: 50%;
+    font-size: 20px;
     text-align: center;
     background-color: #C8B632;
-    color: red; 
-    justify-content: flex-end;
-    
-    
+    color: red;  
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+}
+
+#double:disabled, #deal:disabled {
+    background-color: brown;
+    cursor: not-allowed;
+}
+
+#deal {
+    margin-left: 40px;
 }
 
 #panel {
@@ -75,43 +84,40 @@ button {
     width: 100%;
     padding-top: 10px;
 }
+#one, #five, #twentyfive, #hundred {
+    height:100px;
+    border-radius:50%;
+    width:100px;
+    color: white;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
 
 #one {
     background-color: #8C9193;
     border:1px solid #8C9193;    
-    height:100px;
-    border-radius:50%;
-    width:100px;
-    color: black;
 }
 
 #five {
     background-color: #780822;
     border:1px solid #780822;    
-    height:100px;
-    border-radius:50%;
-    width:100px;
-    color: black;
 }
 
 #twentyfive {
     background-color:#0C332D;
     border:1px solid #0C332D;    
-    height:100px;
-    border-radius:50%;
-    width:100px;
-    color: black; 
 }
 
 #hundred {
     background-color: #10120E;
     border:1px solid  #10120E;    
-    height:100px;
-    border-radius:50%;
-    width:100px;
-    color: black;  
 }
 
-.chip1 {
-    display: 
+#bet-controls, #game-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
