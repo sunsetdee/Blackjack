@@ -142,10 +142,15 @@ button {
 #totalbet, #betamt {
     color: #C8B632;
     font-size: 25px;
+    margin: 0px 0px 5px 30px;
 }
 
 #bank, #bankroll {
     color: #C8B632;
     font-size: 25px;
+    margin: 0px 0px 5px 30px;
 }
 
+#msg {
+    font-size: 30px;
+}
