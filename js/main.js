@@ -32,7 +32,9 @@ const deckEl = document.getElementById('deck');
 const betControlsEl = document.getElementById('bet-controls');
 const gameControlsEl = document.getElementById('game-controls');
 const audio = document.getElementById('dealaudio');
-
+const winAudio = document.getElementById('winaudio');
+const loseAudio = document.getElementById('loseaudio'); 
+const pBlackjack = document.getElementById('playerblackjack');
 
 
 /*----- event listeners -----*/
@@ -94,15 +96,19 @@ function renderMessage() {
     messageEl.textContent = 'You Push';
   } else if (handStatus === 'P') {
     messageEl.textContent = 'You Win!';
+    winAudio.play(); 
   } else if (handStatus === 'D') {
     messageEl.textContent = 'You Lose'; 
+    loseAudio.play();
   } else if (handStatus === 'PBJ') {
     messageEl.textContent = 'You Have Blackjack!!';
+    pBlackjack.play(); 
   } else if (handStatus === 'DBJ') {
     messageEl.textContent = "Dealer Has Blackjack";
   } else {
     messageEl.textContent = 'Good Luck'; 
   }
+  
 }
 
 // return best value of hand 
