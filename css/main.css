@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -16,8 +17,8 @@ header {
 
 #dealer {
     text-align: center;
-    margin: 0.5vmin 10vmin 0.5vmin 0vmin;
     font-size: 5vmin;   
+    margin-bottom: 1vmin;
 }
 
 #dlr.card-container {
@@ -39,8 +40,8 @@ header {
 
 #player {
     text-align: center;
-    margin: 1vmin 0vmin 3vmin 10vmin;   
     font-size: 5vmin;
+    margin-bottom: 1vmin;
 }
 
 #plr.card-container {
@@ -154,3 +155,13 @@ button {
 #msg {
     font-size: 30px;
 }
+
+#dhand, #phand {
+    height: 20vmin;
+}
+
+#dhand > div, #phand > div {
+    transform: scale(1.1);
+    margin: 0 1.3vmin;
+}
+

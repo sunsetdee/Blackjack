@@ -96,13 +96,10 @@ function renderMessage() {
     messageEl.textContent = 'You Push';
   } else if (handStatus === 'P') {
     messageEl.textContent = 'You Win!';
-    winAudio.play(); 
   } else if (handStatus === 'D') {
     messageEl.textContent = 'You Lose'; 
-    loseAudio.play();
   } else if (handStatus === 'PBJ') {
     messageEl.textContent = 'You Have Blackjack!!';
-    pBlackjack.play(); 
   } else if (handStatus === 'DBJ') {
     messageEl.textContent = "Dealer Has Blackjack";
   } else {
@@ -143,14 +140,14 @@ function handleDeal() {
     handStatus = "PBJ";  // Player wins with blackjack
     bankroll += bet + bet * 1.5; 
     bet = 0; 
+    pBlackjack.play(); 
   } else if (dTotal === 21) {
     handStatus = "DBJ";  // Dealer wins with blackjack
     bet = 0; 
+    loseAudio.play();
   } 
-  // TODO: If handStats is not null, update bankroll (use a dedicated function for this)
-  render();
-   
   audio.play();
+  render();
 }
 
 function handleUpdateBet(evt) {
@@ -168,13 +165,13 @@ function handleUpdateBet(evt) {
   render();
 }
 
-
 function handleHit(evt) {
   playerHand.push(deck.pop());
   pTotal = computeHand(playerHand);
   if (pTotal > 21) {
     handStatus = 'D'; 
     bet = 0;
+    loseAudio.play();
   }
   render(); 
 }
@@ -193,6 +190,7 @@ function handleStand() {
     handStatus = 'P';
     bankroll += bet * 2;
     bet = 0; 
+    winAudio.play(); 
   } else if (pTotal === dTotal) {
     handStatus = 'T';
     bankroll += bet;
@@ -200,11 +198,10 @@ function handleStand() {
   } else {
     handStatus = 'D';
     bet = 0;
+    loseAudio.play();
   } 
   render(); 
 }
-
-
 
 function dealerTurn() {
   while (dTotal < 17) {
@@ -212,14 +209,6 @@ function dealerTurn() {
     dTotal = computeHand(dealerHand);
   }
 }
-
-
-
-
-
-
-
-
 
 function getNewShuffledDeck() {
   // Create a copy of the masterDeck (leave masterDeck untouched!)
@@ -233,21 +222,6 @@ function getNewShuffledDeck() {
   }
   return newShuffledDeck;
 }
-
-
-// function renderDeckInContainer(deck, container) {
-//   container.innerHTML = '';
-//   // Let's build the cards as a string of HTML
-//   let cardsHtml = '';
-//   deck.forEach(function(card) {
-//     cardsHtml += `<div class="card ${card.face}"></div>`;
-//   });
-//   // Or, use reduce to 'reduce' the array into a single thing - in this case a string of HTML markup 
-//   // const cardsHtml = deck.reduce(function(html, card) {
-//   //   return html + `<div class="card ${card.face}"></div>`;
-//   // }, '');
-//   container.innerHTML = cardsHtml;
-// }
 
 function buildMasterDeck() {
   const deck = [];
