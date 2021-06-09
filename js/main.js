@@ -35,7 +35,7 @@ const audio = document.getElementById('dealaudio');
 const winAudio = document.getElementById('winaudio');
 const loseAudio = document.getElementById('loseaudio'); 
 const pBlackjack = document.getElementById('playerblackjack');
-
+const resetButtonEl = document.getElementById('reset');
 
 /*----- event listeners -----*/
 betControlsEl.addEventListener('click', handleUpdateBet);
@@ -43,7 +43,7 @@ document.getElementById('hit').addEventListener('click', handleHit);
 document.getElementById('stand').addEventListener('click', handleStand);
 document.getElementById('double').addEventListener('click', handleDoubleDown);
 dealEl.addEventListener('click', handleDeal);
-
+resetButtonEl.addEventListener('click', init);
 /*----- functions -----*/
 init(); 
 
@@ -84,6 +84,12 @@ function renderMoney() {
 }
 
 function renderControls() {
+//  console.log(bankroll)
+  // if (bankroll === 0) {
+    // resetButtonEl.style.visibilty = "visible"
+  // } else {
+    resetButtonEl.style.visibilty = "hidden"
+  // }
   let showBetControls = !playerHand.length || handStatus;
   gameControlsEl.style.display = !showBetControls ? 'flex' : 'none'; 
   betControlsEl.style.display = showBetControls ? 'flex' : 'none'; 

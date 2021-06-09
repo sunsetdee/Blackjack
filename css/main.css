@@ -65,12 +65,12 @@ button {
     background-color: #C8B632;
     color: red;  
     width: 100px;
-    height: 100px;
+    height: 100px;      
     margin: 5px;
 }
 
 #double:disabled, #deal:disabled {
-    background-color: brown;
+    background-color: yellow;
     cursor: not-allowed;
 }
 
@@ -165,5 +165,16 @@ button {
 #dhand > div, #phand > div {
     transform: scale(1.1);
     margin: 0 1.3vmin;
+}
+
+#reset {
+    border-radius: 50%;
+    font-size: 20px;
+    text-align: center;
+    background-color: #C8B632;
+    color: red;  
+    width: 100px;
+    height: 100px;      
+    margin: 5px;
 }
 
