@@ -144,12 +144,14 @@ button {
     color: #C8B632;
     font-size: 25px;
     margin: 0px 0px 5px 30px;
+    text-align: left;
 }
 
 #bank, #bankroll {
     color: #C8B632;
     font-size: 25px;
     margin: 0px 0px 5px 30px;
+    text-align: left;
 }
 
 #msg {
