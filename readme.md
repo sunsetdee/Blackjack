@@ -2,7 +2,7 @@
 
 ## Blackjack AKA 21 is a widely popular card game available in almost all major casino. It is a comparing card game between one or more players vs. the dealer. Each player start with two card and take turns to competes against the dealer. Its objective is to reach 21 or whoever's closer to 21 where A's can be one or 11. If the player is busted(AKA over 21), the player loses, if the dealer is over 21, the dealer loses. Otherwise the player and dealer compete to see who's closer to 21. 
 
-<img src="https://i.imgur.com/duPvO7l.jpg" title="source: imgur.com" />
+<img src="https://i.imgur.com/AlGAZjS.jpg" title="source: imgur.com" />
 
 ## The technologies I've used for this game is 
 1. HTML, that renders the text you see on screen and it's formats and orders. 
