@@ -44,6 +44,7 @@ document.getElementById('stand').addEventListener('click', handleStand);
 document.getElementById('double').addEventListener('click', handleDoubleDown);
 dealEl.addEventListener('click', handleDeal);
 resetButtonEl.addEventListener('click', init);
+
 /*----- functions -----*/
 init(); 
 
@@ -84,12 +85,7 @@ function renderMoney() {
 }
 
 function renderControls() {
-//  console.log(bankroll)
-  // if (bankroll === 0) {
-    // resetButtonEl.style.visibilty = "visible"
-  // } else {
-    resetButtonEl.style.visibilty = "hidden"
-  // }
+  resetButtonEl.style.visibility = (bankroll === 0 && bet === 0) ? "visible" : "hidden";
   let showBetControls = !playerHand.length || handStatus;
   gameControlsEl.style.display = !showBetControls ? 'flex' : 'none'; 
   betControlsEl.style.display = showBetControls ? 'flex' : 'none'; 
@@ -158,7 +154,7 @@ function handleDeal() {
 
 function handleUpdateBet(evt) {
   let amt = evt.target.textContent;
-  if (amt === 'Deal') return; 
+  if (amt === 'Deal' || amt === 'Restart') return; 
   amt = parseInt(amt.replace('$', '')); 
   if (amt > bankroll) return; 
   if (evt.shiftKey && bet >= amt) {
