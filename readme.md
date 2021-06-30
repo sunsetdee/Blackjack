@@ -4,7 +4,7 @@
 
 <img src="https://i.imgur.com/NItJmj2.jpg" title="source: imgur.com" />
 
-## The technologies I've used for this game is 
+## The technologies I've used for this game are 
 1. HTML, that renders the text you see on screen and it's formats and orders. 
 2. Second I've used CSS which is the styling you see on screen, this beautiful deck of card and any colors you see are rendered by CSS .
 3. Third I used CSS Cardstarter Library to render this deck of card. 
